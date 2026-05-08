@@ -1,9 +1,11 @@
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    ArrayList<String> catalogue = new ArrayList<>();
 
     int option;
 
@@ -67,6 +69,13 @@ public class App {
       if(!text.isEmpty()) return text.trim();
 
       System.out.println("Error: the text cannot be empty.");
+    }
+  }
+
+  public static void checkEmptyCatalogue(ArrayList<String> catalogue) {
+    if(catalogue.isEmpty()) {
+      System.out.println("There's no items in the catalogue.");
+      return;
     }
   }
 }
