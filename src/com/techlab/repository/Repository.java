@@ -1,6 +1,6 @@
-package repository;
+package com.techlab.repository;
 
-import interfaces.Identifiable;
+import com.techlab.interfaces.Identifiable;
 import java.util.ArrayList;
 import java.util.List;
 

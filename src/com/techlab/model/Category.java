@@ -1,6 +1,6 @@
-package model;
+package com.techlab.model;
 
-import interfaces.Identifiable;
+import com.techlab.interfaces.Identifiable;
 
 public class Category implements Identifiable{
   private int code;

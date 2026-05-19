@@ -1,4 +1,4 @@
-package model;
+package com.techlab.model;
 
 public class FoodArticle extends Article {
   private int daysUntilExpires;
