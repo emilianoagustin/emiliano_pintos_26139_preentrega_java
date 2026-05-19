@@ -1,7 +1,7 @@
-package model;
+package com.techlab.model;
 
-import interfaces.Calculable;
-import interfaces.Identifiable;
+import com.techlab.interfaces.Calculable;
+import com.techlab.interfaces.Identifiable;
 
 public abstract class Article implements Identifiable, Calculable{
   protected int code;
@@ -52,6 +52,6 @@ public abstract class Article implements Identifiable, Calculable{
 
   @Override
   public String toString() {
-    return "{\"Article\":{\"code\":\"" + this.code + "\",\"name\":\"" + this.name + "\",\"price\":" + this.price + "}}";
+    return "{\"Article\":{\"code\":\"" + this.code + "\",\"name\":\"" + this.name + "\",\"price\":" + this.price + "\",\"category\":\"" + category.getName() + "\",\"type\":\"" + this.getArticleType() + "\",\"detail\":\"" + this.getSpecificDetail() + "}}";
   }
 }
