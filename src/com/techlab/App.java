@@ -1,6 +1,5 @@
 
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import menu.ArticleMenu;
@@ -11,6 +10,9 @@ public class App {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
+
+    Menu articleMenu = new ArticleMenu(scanner);
+    Menu categoryMenu = new CategoryMenu(scanner);
     int option;
 
     do {
@@ -26,10 +28,10 @@ public class App {
 
         switch (option) {
           case 1:
-            System.out.println("\nOption 1");
+            articleMenu.showMenu();
             break;
           case 2:
-            System.out.println("\nOption 2");
+            categoryMenu.showMenu();
             break;
           case 0:
             System.out.println("\nExiting system...¡Goodbye!");

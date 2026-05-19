@@ -1,7 +1,5 @@
 package menu;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public abstract class Menu {
@@ -15,7 +13,7 @@ public abstract class Menu {
 
   public abstract void trigger();
 
-  public int checkInteger(Scanner scanner, String message) {
+  public static int checkInteger(Scanner scanner, String message) {
     while(true) {
       try {
         System.out.print(message);
@@ -47,8 +45,21 @@ public abstract class Menu {
       System.out.println("Error: the text cannot be empty.");
     }
   }
-
   
-  // TODO:
-  // Metodos checkDouble y readYesNo
+  public String checkType(Scanner scanner)    {
+    while (true) {
+
+      System.out.println("Choose the type of your article:");
+      System.out.println("- Food");
+      System.out.println("- Electronics");
+
+      String type = scanner.nextLine().trim().toLowerCase();
+
+      if (type.equals("food") || type.equals("electronics")) {
+        return type;
+      }
+
+      System.out.println("Invalid type. Please try again.");
+    }
+  }
 }
