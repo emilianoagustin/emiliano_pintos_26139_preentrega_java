@@ -6,6 +6,7 @@ import repository.Repository;
 import model.Article;
 import model.Category;
 import model.ElectronicArticle;
+import model.FoodArticle;
 
 public class ArticleMenu extends Menu {
   
@@ -49,7 +50,7 @@ public class ArticleMenu extends Menu {
             System.out.println("\nGoing back to previous menu...¡Goodbye!");
             break;
           default:
-            System.out.println("\nError: you entered an invalid option")
+            System.out.println("\nError: you entered an invalid option");
         }
       } while (option != 0);
     };
@@ -60,15 +61,22 @@ public class ArticleMenu extends Menu {
         return;
       }
 
-      String articleType = checkNoEmptyText(scanner, "\nWhich type of article you want to create? Food or Electronic?");
+      int articleExpireDate;
+      int articleWarranty;
+      Article article;
+      String articleType = checkType(scanner);
       String articleName = articleName();
       double articlePrice = articlePrice();
-
-      if(articleType.equalsIgnoreCase("food")) articleExpireDate();
-      else articleWarranty();
+      Category category = queryCategoryExists();
+      int code = showArticles().size() + 1;
       
-      //chequear categoria por codigo y agregarla al articulo
-      Article article = new ElectronicArticle(0, articleName, articlePrice, null, 0);
+      if(articleType == "food") {
+        articleExpireDate = articleExpireDate();
+        article = new FoodArticle(code, articleName, articlePrice, category, articleExpireDate);
+      } else {
+        articleWarranty = articleWarranty();
+        article = new ElectronicArticle(code, articleName, articlePrice, category, articleWarranty);
+      }
       articleRepository.addToList(article);
     };
 
@@ -91,7 +99,7 @@ public class ArticleMenu extends Menu {
     };
 
     public Category queryCategoryExists(){
-      int code = checkInteger(scanner, "\nEnter the code of the article you want to query.");
+      int code = checkInteger(scanner, "\nEnter the code of the category you want to add to your article.");
       Category category = categoryRepository.searchByCode(code);
       return category;
     };
@@ -104,6 +112,12 @@ public class ArticleMenu extends Menu {
       double price = checkDouble(scanner, "\nEnter the price of the article.");
       return price;
     };
-    public void articleWarranty(){};
-    public void articleExpireDate(){};
+    public int articleWarranty(){
+      int months = checkInteger(scanner, "\nEnter the months of the article warranty.");
+      return months;
+    };
+    public int articleExpireDate(){
+      int date = checkInteger(scanner, "\nEnter the article expire date.");
+      return date;
+    };
 }
