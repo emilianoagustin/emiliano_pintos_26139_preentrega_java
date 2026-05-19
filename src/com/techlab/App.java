@@ -1,43 +1,37 @@
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
+
+import menu.ArticleMenu;
+import menu.CategoryMenu;
+import menu.Menu;
 
 public class App {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    ArrayList<String> catalogue = new ArrayList<>();
 
+
+    Menu articleMenu = new ArticleMenu(scanner);
+    Menu categoryMenu = new CategoryMenu(scanner);
     int option;
 
     do {
         System.out.println("\n==========================================");
-        System.out.println("   SISTEMA BÁSICO DE ARTÍCULOS - CLASE 1");
+        System.out.println("   BASIC ARTICLE SYSTEM - CLASS 1");
         System.out.println("==========================================");
-        System.out.println("1 - Ingresar artículo");
-        System.out.println("2 - Listar artículos");
-        System.out.println("3 - Consultar un artículo");
-        System.out.println("4 - Modificar un artículo");
-        System.out.println("5 - Eliminar un artículo");
-        System.out.println("0 - Salir");
+        System.out.println("1 - Show articles menu");
+        System.out.println("2 - Show categories menu");
+        System.out.println("0 - Exit");
         System.out.println("==========================================");
 
-        option = checkInteger(scanner, "Enter an option: ");
+        option = Menu.checkInteger(scanner, "Enter an option: ");
 
         switch (option) {
           case 1:
-            System.out.println("\nOption 1");
+            articleMenu.showMenu();
             break;
           case 2:
-            System.out.println("\nOption 2");
-            break;
-          case 3:
-            System.out.println("\nOption 3");
-            break;
-          case 4:
-            System.out.println("\nOption 4");
-            break;
-          case 5:
-            System.out.println("\nOption 5");
+            categoryMenu.showMenu();
             break;
           case 0:
             System.out.println("\nExiting system...¡Goodbye!");
@@ -48,34 +42,5 @@ public class App {
         }
     } while (option != 0);
     scanner.close();
-  }
-
-  public static int checkInteger(Scanner scanner, String message) {
-    while(true) {
-      try {
-        System.out.print(message);
-        return Integer.parseInt(scanner.nextLine());
-      } catch (NumberFormatException e) {
-        System.out.println("Error: you must enter a valid number");
-      }
-    }
-  }
-
-  public static String checkNoEmptyText(Scanner scanner, String message) {
-    while(true) {
-      System.out.print(message);
-      String text = scanner.nextLine();
-
-      if(!text.isEmpty()) return text.trim();
-
-      System.out.println("Error: the text cannot be empty.");
-    }
-  }
-
-  public static void checkEmptyCatalogue(ArrayList<String> catalogue) {
-    if(catalogue.isEmpty()) {
-      System.out.println("There's no items in the catalogue.");
-      return;
-    }
   }
 }
