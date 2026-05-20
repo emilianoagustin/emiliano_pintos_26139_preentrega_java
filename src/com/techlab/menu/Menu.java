@@ -19,47 +19,42 @@ public abstract class Menu {
         System.out.print(message);
         return Integer.parseInt(scanner.nextLine());
       } catch (NumberFormatException e) {
-        System.out.println("Error: you must enter a valid number");
+        System.out.println("\nError: you must enter a valid number");
       }
     }
   }
   
-  public double checkDouble(Scanner scanner, String message) {
+  protected double checkDouble(Scanner scanner, String message) {
     while (true) {
       try {
         System.out.print(message);
         return Double.parseDouble(scanner.nextLine());
       } catch (NumberFormatException e) {
-        System.out.println("Error: you must enter a valid number");
+        System.out.println("\nError: you must enter a valid number");
       }
     }
   }
 
-  public String checkNoEmptyText(Scanner scanner, String message) {
+  protected String checkNoEmptyText(Scanner scanner, String message) {
     while(true) {
       System.out.print(message);
       String text = scanner.nextLine();
 
       if(!text.isEmpty()) return text.trim();
 
-      System.out.println("Error: the text cannot be empty.");
+      System.out.println("\nError: the text cannot be empty.");
     }
   }
-  
-  public String checkType(Scanner scanner)    {
+
+  protected boolean checkConfirm(String message) {
     while (true) {
+      System.out.print(message);
+      String option = scanner.nextLine().trim().toUpperCase();
 
-      System.out.println("Choose the type of your article:");
-      System.out.println("- Food");
-      System.out.println("- Electronics");
+      if(option.equals("Y")) return true;
+      if(option.equals("N")) return false;
 
-      String type = scanner.nextLine().trim().toLowerCase();
-
-      if (type.equals("food") || type.equals("electronics")) {
-        return type;
-      }
-
-      System.out.println("Invalid type. Please try again.");
+      System.out.print("\nError: You entered an invalid option.");
     }
   }
 }

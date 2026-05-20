@@ -37,9 +37,10 @@ public class Repository<T extends Identifiable> {
     return list.remove(object);
   }
   
-  public boolean checkEmpty() {
+  public boolean checkEmpty(String message) {
     if(list.isEmpty()) {
-      System.out.println("There's no items in this list.");
+      System.out.println("------ **** ------");
+      System.out.println(message);
       return true;
     }
     return false;
