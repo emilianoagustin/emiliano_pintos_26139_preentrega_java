@@ -1,4 +1,4 @@
-package model;
+package com.techlab.model;
 
 public class ElectronicArticle extends Article {
   private int warrantyMonths;
@@ -17,7 +17,7 @@ public class ElectronicArticle extends Article {
   
   @Override
   public String getArticleType() {
-    return " ";
+    return "Electronic";
   }
   @Override
   public double calculateFinalPrice() {
@@ -25,6 +25,6 @@ public class ElectronicArticle extends Article {
   }
   @Override
   public String getSpecificDetail() {
-    return " ";
+    return "Warranty: " + warrantyMonths + " months.";
   }
 }
